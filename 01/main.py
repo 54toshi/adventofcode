@@ -1,6 +1,3 @@
-# Open the input file and read data
-
-
 def part_one():
     nums1 = []
     nums2 = []
