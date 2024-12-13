@@ -5,16 +5,8 @@
 
 # TODO: part 2
 
-from enum import Enum
 from pprint import pprint
 from copy import deepcopy
-
-
-class Direction(Enum):
-    UP = "^"
-    DOWN = "v"
-    LEFT = "<"
-    RIGHT = ">"
 
 
 def get_position_guard(matrix):
@@ -38,33 +30,33 @@ def map_matrix(matrix):
         matrix[i][j] = "X"
 
         match direction:
-            case Direction.UP.value:
+            case "^":
                 if matrix[i - 1][j] in [".", "X"]:
-                    matrix[i - 1][j] = Direction.UP.value
+                    matrix[i - 1][j] = "^"
                     i -= 1
                 else:  # turn right
-                    matrix[i][j + 1] = Direction.RIGHT.value
+                    matrix[i][j + 1] = ">"
                     j += 1
-            case Direction.RIGHT.value:
+            case ">":
                 if matrix[i][j + 1] in [".", "X"]:
-                    matrix[i][j + 1] = Direction.RIGHT.value
+                    matrix[i][j + 1] = ">"
                     j += 1
                 else:  # turn right
-                    matrix[i + 1][j] = Direction.DOWN.value
+                    matrix[i + 1][j] = "v"
                     i += 1
-            case Direction.DOWN.value:
+            case "v":
                 if matrix[i + 1][j] in [".", "X"]:
-                    matrix[i + 1][j] = Direction.DOWN.value
+                    matrix[i + 1][j] = "v"
                     i += 1
                 else:  # turn right
-                    matrix[i][j - 1] = Direction.LEFT.value
+                    matrix[i][j - 1] = "<"
                     j -= 1
-            case Direction.LEFT.value:
+            case "<":
                 if matrix[i][j - 1] in [".", "X"]:
-                    matrix[i][j - 1] = Direction.LEFT.value
+                    matrix[i][j - 1] = "<"
                     j -= 1
                 else:  # turn right
-                    matrix[i - 1][j] = Direction.UP.value
+                    matrix[i - 1][j] = "^"
                     i -= 1
             case _:
                 raise Exception
